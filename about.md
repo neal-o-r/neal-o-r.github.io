@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+My name is Neal Ó Riain. I'm originally from Carlow, and currently I live in London where I work as a Data Scientist at Amazon.
 
-### More Information
+My plan is to use this site for blog posts about things I'm working on or thinking about, you can find some more infor about me on my [website](n-o-r.xyz)
 
-A place to include any other types of information that you'd like to include about yourself.
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+You can get in touch at [neal.o.riain@gmail.com](mailto:neal.o.riain@gmail.com).
