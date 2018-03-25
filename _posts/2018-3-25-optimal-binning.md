@@ -55,13 +55,13 @@ data points. This isn't bad, given that it's choosing the optimal configuration 
 possibilities, but for a reasonably-sized data set a quadratic scaling is a bit of a killer. As a
 result I decided to make use of Hogg's model, and put an algorithm together based on that.
 
-It's always a good idea to have a well-defined model as a starting point in order to define what
-we're driving at. A good model for a histogram comes from the observation that in the limit of
-infinite data the histogram converges to the PDF of the data. So the best histogram of a set of data
-is the one that matches the PDF of the $x$ as well as possible given how much data we've seen; or in
-other words best predicts where future data will land.  As such we might start with a model like
-this: given a new observation we would expect it to fall into bin $i$ with probability given by the
-proportion of observation we've already seen go into that bin.  Mathematically:
+It's always a good idea to have a well-defined model as a starting point in order to motivate the
+questions we're asking. A good model for a histogram comes from the observation that in the limit of
+infinite data the histogram converges to the PDF. So the best histogram of a set of data is the one
+that matches the PDF of $x$ as well as possible given how much data we've seen; or in other words
+best predicts where future data will land.  As such we might start with a model like this: given a
+new observation we would expect it to fall into bin $i$ with probability given by the proportion of
+observation we've already seen go into that bin.  Mathematically:
 
 $p(i) = \frac{N_i}{\sum N_i}$
 
@@ -79,8 +79,8 @@ $L = \sum_j w_j \ln \left(\frac{W_i + \alpha - w_j}{h_i(\sum_k W_k + \alpha) -w_
 
 Where $j$ designates a sum over points, $w_j$ is the weight associated with point $x$, $W_i$ is the
 sum of all the $w$'s in bin $i$, and $h$ is the width of bin $i$. This is the general form, but in
-the case that our data have binary weights, where $w_j = 1 \forall j$ is a histogram, we can greatly
-simplify this equation to a (much more efficient) sum over bins
+the case that our data have binary weights (the case where $w_j = 1 \; \forall j$ is a histogram) we
+can greatly simplify this equation to a (much more efficient) sum over bins
 
 $L = \sum_i w_j \ln \left(\frac{W_i + \alpha - 1}{h_i(\sum_k W_k + \alpha) - 1}  \right)$ 
 
@@ -94,19 +94,21 @@ binning by GINI or entropy, as used in decision trees. It goes like this:
 
 3) For each of the $n-1$ bin-edges, remove the one whose removal most increases $L$
 
-4) Repeat until $L$ will be decreased by removing another bin
+4) Repeat until $L$ will be decreased by merging any more bins
 
 By this process we begin with a fine binning of $x$ and we keep merging bins until each pair of
 adjacent bins are in some sense optimally different from one another. The nice thing about this
 simple model is that it can be implemented really easily (no dynamic programming required) and it
-has complexity $\mathcal{O}(N_bins^2\log(N_data))$. All isn't rosy in the garden however, there are
-drawbacks to this method. Since we start off with $n$ even bins and we only ever remove bin-edges,
-never adding or moving any, we end up with edges on integer fractions of the span of $x$, which may
-not be optimal. Secondly, since the algorithm is greedy it will drive directly into the first local
-minimum it sees, and it will never pass through a low-likelihood region to get to a higher
-likelihood one, e.g. if we have 3 bins where 1 would be optimal, but merging any pair would be worse
-than keeping the 3 then we'll never get to the 1 bin optimal solution. These drawbacks are a shame,
-but on the whole it seems the histograms we arrive at are pretty good.
+has complexity $\mathcal{O}(N_{bins}^2\log(N_{data}))$. Great!
+
+All isn't rosy in the garden however, there are drawbacks to this method. Since we start off with
+$n$ even bins and we only ever remove bin-edges, never adding or moving any, we end up with edges on
+integer fractions of the range of $x$, which may not be optimal. Secondly, since the algorithm is
+greedy it will drive directly into the first local minimum it sees, and it will never pass through a
+low-likelihood region to get to a higher likelihood one, e.g. if we have 3 bins where 1 would be
+optimal, but merging any pair would be worse than keeping the 3, then we'll never get to the 1 bin
+optimal solution. These drawbacks are a shame, but on the whole it seems the histograms we arrive at
+are pretty good.
 
 I've coded this up in a scikit transformer [here](https://github.com/neal-o-r/optimal-binning).
 
