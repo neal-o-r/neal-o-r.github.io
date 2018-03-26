@@ -1,7 +1,7 @@
 title: "'(NÓR)"
 author: Neal Ó Riain
 email: neal.o.riain@gmail.com
-description:  # this means to ignore newlines until "twitter_username:"
+description: Former astrophysicist, current Irishman abroad. Big fan of numbers  # this means to ignore newlines until "twitter_username:"
 
 # social links
 twitter_username: neal_o_r
@@ -15,7 +15,7 @@ github_username:  neal-o-r
 #   instance: example.com
 
 
-show_excerpts: false # set to true to show excerpts on the homepage
+show_excerpts: true # set to true to show excerpts on the homepage
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
