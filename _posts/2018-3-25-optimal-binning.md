@@ -109,9 +109,13 @@ greedy it will drive directly into the first local minimum it sees, and it will 
 low-likelihood region to get to a higher likelihood one, e.g. if we have 3 bins where 1 would be
 optimal, but merging any pair would be worse than keeping the 3, then we'll never get to the 1 bin
 optimal solution. These drawbacks are a shame, but on the whole it seems the histograms we arrive at
-are pretty good.
+are pretty good. The example below is what we get when binning some arbitrary Cauchy functions I've 
+stuck together.
 
-I've coded this up in a scikit transformer [here](https://github.com/neal-o-r/optimal-binning).
+![hist](/images/hist.png)
+
+
+I've coded this up in a sklearn transformer [here](https://github.com/neal-o-r/optimal-binning).
 
 
 --- 
