@@ -112,7 +112,7 @@ optimal solution. These drawbacks are a shame, but on the whole it seems the his
 are pretty good. The example below is what we get when binning some arbitrary Cauchy functions I've 
 stuck together.
 
-![hist](/images/hist.png)
+![hist](/images/optimal_binning/hist.png)
 
 
 I've coded this up in a sklearn transformer [here](https://github.com/neal-o-r/optimal-binning).
