@@ -30,10 +30,10 @@ where $h$ is the width of the bins, and IQR is the interquartile range of x, i.e
 between the 25th and the 75th percentiles, the range into which the middle half of the data fall.
 This seems like a sensible quantity to have in an equation like this, and it turns out to be quite
 useful, even giving us some guarantees about the sensitivity of this binning to outliers.       As I
-said, if you're using ```np.histogram``` you're getting one or the other of these, whichever is
+said, if you're using ```np.histogram``` you're getting one or the other of these, whichever 
 gives more bins.  Most people would be happy enough with that but it does seem like we're leaving
 the table a little early here, surely we can do better than these fairly simple approaches. For
-instance we can start varying not just the number of bins but also their sizes.
+instance maybe we can vary not just the number of bins but also their sizes.
 
 It turns out that making optimal bins is something that's useful to people in a lot of different
 fields. For instance people in the business of making [credit
@@ -45,9 +45,10 @@ People looking at time-series might be trying to group data together in a motiva
 change points. So as it happens there's quite a bit of literature on the topic.
 
 From the astrophysical domain there are two particularly interesting papers that I've come across, one by
-the JD Scargle, of periodogram fame, and one by DW Hogg. Scargle's paper is really fascinating,
-coming at the problem from a Bayesian perspective, and uses a dynamic programming algorithm to build
-up an optimal set of bins for a given data set. The paper itself is excellent, even coming with a
+the [Scargle](https://arxiv.org/abs/1207.5578), of periodogram fame, and one by 
+[Hogg](https://arxiv.org/abs/0807.4820). Scargle's paper is really fascinating, coming at the problem from a
+Bayesian perspective, and uses a dynamic programming algorithm to build
+up an optimal set of bins for a given data set. The paper itself is really clear, and even comes with a
 Matlab implementation of the algorithm. Jake Vanderplas has an accessible write-up on his
 [blog](https://jakevdp.github.io/blog/2012/09/12/dynamic-programming-in-python/). One of the
 downsides of Scargle's algorithm is the complexity, scaling as $\mathcal{O}(N^2)$ in the number of
