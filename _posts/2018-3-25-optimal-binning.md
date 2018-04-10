@@ -83,7 +83,7 @@ sum of all the $w$'s in bin $i$, and $h$ is the width of bin $i$. This is the ge
 the case that our data have binary weights (the case where $w_j = 1 \; \forall j$ is a histogram) we
 can greatly simplify this equation to a (much more efficient) sum over bins
 
-$$L = \sum_i w_j \ln \left(\frac{W_i + \alpha - 1}{h_i(\sum_k W_k + \alpha) - 1}  \right)$$
+$$L = \sum_i W_i \ln \left(\frac{W_i + \alpha - 1}{h_i(\sum_k W_k + \alpha) - 1}  \right)$$
 
 Great, so now we have a way of scoring a given histogram, how can we use it to find the optimal
 binning? To do this I implemented a simple greedy algorithm that'll be familiar to people used to
