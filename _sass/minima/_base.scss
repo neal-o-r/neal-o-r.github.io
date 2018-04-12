@@ -143,12 +143,12 @@ blockquote {
 /**
  * Code formatting
  */
-pre,
 code {
   @include relative-font-size(0.9375);
+  color: #f1f3f3; 
   border: 1px solid $grey-color-light;
   border-radius: 3px;
-  background-color: #d9d9d9;
+  background-color: #002b36;
 }
 
 code {
@@ -157,6 +157,7 @@ code {
 
 pre {
   padding: 8px 12px;
+  background-color: #d9d9d9;
   overflow-x: auto;
 
   > code {
