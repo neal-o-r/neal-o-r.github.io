@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bokeh Plot</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.10.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.10.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="567c5e09-6225-4fcb-9ecf-2b95de4f30c7"></div>
+        </div>
+        
+        <script type="text/javascript">
+            (function(root, factory) {
+        //  if(typeof exports === 'object' && typeof module === 'object')
+        //    factory(require("Bokeh"));
+        //  else if(typeof define === 'function' && define.amd)
+        //    define(["Bokeh"], factory);
+        //  else if(typeof exports === 'object')
+        //    factory(require("Bokeh"));
+        //  else
+            factory(root["Bokeh"]);
+        })(this, function(Bokeh) {
+          var define;
+          return (function outer(modules, entry) {
+          if (Bokeh != null) {
+            return Bokeh.register_plugin(modules, {}, entry);
+          } else {
+            throw new Error("Cannot find Bokeh. You have to load it prior to loading plugins.");
+          }
+        })
+        ({
+          "custom/main": function(require, module, exports) {
+            var models = {
+              "Surface3d": require("custom/surface3d").Surface3d
+            };
+            require("base").register_models(models);
+            module.exports = models;
+          },
+          "custom/surface3d": function(require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var OPTIONS, extend = function (child, parent) { for (var key in parent) {
+            if (hasProp.call(parent, key))
+                child[key] = parent[key];
+        } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; }, hasProp = {}.hasOwnProperty;
+        var p = require("core/properties");
+        var layout_dom_1 = require("models/layouts/layout_dom");
+        OPTIONS = {
+            width: '700px',
+            height: '700px',
+            style: 'dot-color',
+            showPerspective: true,
+            keepAspectRatio: true,
+            verticalRatio: 1.0,
+            showLegend: false,
+            cameraPosition: {
+                horizontal: 2.35,
+                vertical: 0.22,
+                distance: 1.8
+            },
+            dotSizeRatio: 0.01,
+            tooltip: function (point) {
+                return point.data.extra;
+            }
+        };
+        exports.Surface3dView = (function (superClass) {
+            extend(Surface3dView, superClass);
+            function Surface3dView() {
+                return Surface3dView.__super__.constructor.apply(this, arguments);
+            }
+            Surface3dView.prototype.initialize = function (options) {
+                var script, url;
+                Surface3dView.__super__.initialize.call(this, options);
+                url = "http://visjs.org/dist/vis.js";
+                script = document.createElement('script');
+                script.src = url;
+                script.async = false;
+                script.onreadystatechange = script.onload = (function (_this) {
+                    return function () {
+                        return _this._init();
+                    };
+                })(this);
+                return document.querySelector("head").appendChild(script);
+            };
+            Surface3dView.prototype._init = function () {
+                this._graph = new vis.Graph3d(this.el, this.get_data(), OPTIONS);
+                return this.connect(this.model.data_source.change, (function (_this) {
+                    return function () {
+                        return _this._graph.setData(_this.get_data());
+                    };
+                })(this));
+            };
+            Surface3dView.prototype.get_data = function () {
+                var data, i, j, ref, source;
+                data = new vis.DataSet();
+                source = this.model.data_source;
+                for (i = j = 0, ref = source.get_length(); 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+                    data.add({
+                        x: source.get_column(this.model.x)[i],
+                        y: source.get_column(this.model.y)[i],
+                        z: source.get_column(this.model.z)[i],
+                        extra: source.get_column(this.model.extra)[i],
+                        style: source.get_column(this.model.color)[i]
+                    });
+                }
+                return data;
+            };
+            return Surface3dView;
+        })(layout_dom_1.LayoutDOMView);
+        exports.Surface3d = (function (superClass) {
+            extend(Surface3d, superClass);
+            function Surface3d() {
+                return Surface3d.__super__.constructor.apply(this, arguments);
+            }
+            Surface3d.prototype.default_view = exports.Surface3dView;
+            Surface3d.prototype.type = "Surface3d";
+            Surface3d.define({
+                x: [p.String],
+                y: [p.String],
+                z: [p.String],
+                color: [p.String],
+                extra: [p.String],
+                data_source: [p.Instance]
+            });
+            return Surface3d;
+        })(layout_dom_1.LayoutDOM);
+        
+        }
+        }, "custom/main");
+        ;
+        });
+        (function() {
+          var fn = function() {
+            Bokeh.safely(function() {
+              (function(root) {
+                function embed_document(root) {
+                  var docs_json = {"89c5c0ca-4770-4780-b1e0-188e747f8343":{"roots":{"references":[{"attributes":{"color":"color","data_source":{"id":"1cc59f95-2087-4aa9-846b-faceab7e3928","type":"ColumnDataSource"},"extra":"extra","x":"x","y":"y","z":"z"},"id":"6ceffc48-d65e-4741-bc1e-698102169c6c","type":"Surface3d"},{"attributes":{"callback":null,"column_names":["x","y","z","color","extra"],"data":{"color":["#003688","#9B0056","#F3A9BB","#003688","#9B0056","#000000","#000000","#003688","#003688","#B36305","#000000","#E32017","#9B0056","#00782A","#E32017","#003688","#FFD300","#00782A","#000000","#A0A5A9","#E32017","#FFD300","#0098D4","#E32017","#000000","#003688","#003688","#F3A9BB","#000000","#0098D4","#F3A9BB","#E32017","#000000","#003688","#000000","#A0A5A9","#A0A5A9","#A0A5A9","#FFD300","#A0A5A9","#9B0056","#000000","#E32017","#B36305","#9B0056","#E32017","#00782A","#9B0056","#000000","#000000","#000000","#003688","#000000","#000000","#003688","#9B0056","#00782A","#00782A","#E32017","#A0A5A9","#E32017","#003688","#003688","#E32017","#000000","#F3A9BB","#00782A","#003688","#000000","#B36305","#000000","#00782A","#B36305","#E32017","#0098D4","#9B0056","#E32017","#9B0056","#000000","#A0A5A9","#0098D4","#00782A","#E32017","#003688","#000000","#F3A9BB","#000000","#E32017","#9B0056","#0098D4","#E32017","#00782A","#E32017","#003688","#000000","#E32017","#B36305","#B36305","#9B0056","#003688","#003688","#000000","#000000","#FFD300","#0098D4","#000000","#003688","#E32017","#E32017","#003688","#00782A","#003688","#003688","#003688","#003688","#003688","#000000","#B36305","#00782A","#000000","#B36305","#00782A","#A0A5A9","#B36305","#0098D4","#9B0056","#A0A5A9","#003688","#F3A9BB","#B36305","#E32017","#F3A9BB","#000000","#E32017","#E32017","#E32017","#A0A5A9","#E32017","#B36305","#003688","#FFD300","#E32017","#B36305","#E32017","#000000","#FFD300","#9B0056","#000000","#000000","#000000","#A0A5A9","#EE7C0E","#EE7C0E","#E32017","#E32017","#003688","#A0A5A9","#9B0056","#B36305","#003688","#E32017","#9B0056","#9B0056","#9B0056","#E32017","#003688","#000000","#003688","#000000","#B36305","#B36305","#003688","#00782A","#E32017","#B36305","#0098D4","#9B0056","#F3A9BB","#9B0056","#00782A","#B36305","#A0A5A9","#E32017","#00782A","#003688","#E32017","#B36305","#00782A","#9B0056","#E32017","#EE7C0E","#F3A9BB","#003688","#E32017","#003688","#003688","#0098D4","#EE7C0E","#E32017","#EE7C0E","#FFD300","#E32017","#003688","#003688","#003688","#B36305","#E32017","#000000","#E32017","#00782A","#003688","#A0A5A9","#FFD300","#A0A5A9","#E32017","#00782A","#A0A5A9","#F3A9BB","#0098D4","#B36305","#E32017","#003688","#003688","#EE7C0E","#A0A5A9","#FFD300","#E32017","#000000","#000000","#E32017","#0098D4","#000000","#FFD300","#000000","#00782A","#003688","#00782A","#00782A","#00782A","#F3A9BB","#003688","#0098D4","#0098D4","#0098D4","#E32017","#EE7C0E","#0098D4","#B36305","#B36305","#9B0056","#B36305","#A0A5A9","#E32017","#00782A","#000000","#A0A5A9","#A0A5A9","#9B0056","#00782A","#E32017","#F3A9BB","#A0A5A9","#E32017","#F3A9BB","#A0A5A9","#B36305","#00782A","#00782A","#003688","#E32017","#000000"],"extra":["ACTON TOWN","ALDGATE","ALDGATE EAST","ALPERTON","AMERSHAM","ANGEL","ARCHWAY","ARNOS GROVE","ARSENAL","BAKER STREET","BALHAM","BANK","BARBICAN","BARKING","BARKINGSIDE","BARONS COURT","BAYSWATER","BECONTREE","BELSIZE PARK","BERMONDSEY","BETHNAL GREEN","BLACKFRIARS","BLACKHORSE ROAD","BOND STREET","BOROUGH","BOSTON MANOR","BOUNDS GREEN","BOW ROAD","BRENT CROSS","BRIXTON","BROMLEY BY BOW","BUCKHURST HILL","BURNT OAK","CALEDONIAN ROAD","CAMDEN TOWN","CANADA WATER","CANARY WHARF","CANNING TOWN","CANNON STREET","CANONS PARK","CHALFONT & LATIMER","CHALK FARM","CHANCERY LANE","CHARING CROSS","CHESHAM","CHIGWELL","CHISWICK PARK","CHORLEYWOOD","CLAPHAM COMMON","CLAPHAM NORTH","CLAPHAM SOUTH","COCKFOSTERS","COLINDALE","COLLIERS WOOD","COVENT GARDEN","CROXLEY","DAGENHAM EAST","DAGENHAM HEATHWAY","DEBDEN","DOLLIS HILL","EALING BROADWAY","EALING COMMON","EARLS COURT","EAST ACTON","EAST FINCHLEY","EAST HAM","EAST PUTNEY","EASTCOTE","EDGWARE","EDGWARE ROAD","ELEPHANT & CASTLE","ELM PARK","EMBANKMENT","EPPING","EUSTON","EUSTON SQUARE","FAIRLOP","FARRINGDON","FINCHLEY CENTRAL","FINCHLEY ROAD","FINSBURY PARK","FULHAM BROADWAY","GANTS HILL","GLOUCESTER ROAD","GOLDERS GREEN","GOLDHAWK ROAD","GOODGE STREET","GRANGE HILL","GREAT PORTLAND STREET","GREEN PARK","GREENFORD","GUNNERSBURY","HAINAULT","HAMMERSMITH","HAMPSTEAD","HANGER LANE","HARLESDEN","HARROW & WEALDSTONE","HARROW-ON-THE-HILL","HATTON CROSS","HEATHROW 123","HENDON CENTRAL","HIGH BARNET","HIGH STREET KENSINGTON","HIGHBURY","HIGHGATE","HILLINGDON","HOLBORN","HOLLAND PARK","HOLLOWAY ROAD","HORNCHURCH","HOUNSLOW CENTRAL","HOUNSLOW EAST","HOUNSLOW WEST","HYDE PARK CORNER","ICKENHAM","KENNINGTON","KENSAL GREEN","KENSINGTON","KENTISH TOWN","KENTON","KEW GARDENS","KILBURN","KILBURN PARK","KINGS CROSS","KINGS CROSS ST PANCRAS","KINGSBURY","KNIGHTSBRIDGE","LADBROKE GROVE","LAMBETH NORTH","LANCASTER GATE","LATIMER ROAD","LEICESTER SQUARE","LEYTON","LEYTONSTONE","LIVERPOOL STREET","LONDON BRIDGE","LOUGHTON","MAIDA VALE","MANOR HOUSE","MANSION HOUSE","MARBLE ARCH","MARYLEBONE","MILE END","MILL HILL EAST","MONUMENT","MOOR PARK","MOORGATE","MORDEN","MORNINGTON CRESCENT","NEASDEN","NEW CROSS","NEW CROSS GATE","NEWBURY PARK","NORTH ACTON","NORTH EALING","NORTH GREENWICH","NORTH HARROW","NORTH WEMBLEY","NORTHFIELDS","NORTHOLT","NORTHWICK PARK","NORTHWOOD","NORTHWOOD HILLS","NOTTING HILL GATE","OAKWOOD","OLD STREET","OSTERLEY","OVAL","OXFORD CIRCUS","PADDINGTON","PARK ROYAL","PARSONS GREEN","PERIVALE","PICCADILLY CIRCUS","PIMLICO","PINNER","PLAISTOW","PRESTON ROAD","PUTNEY BRIDGE","QUEENS PARK","QUEENSBURY","QUEENSWAY","RAVENSCOURT PARK","RAYNERS LANE","REDBRIDGE","REGENTS PARK","RICHMOND","RICKMANSWORTH","RODING VALLEY","ROTHERHITHE","ROYAL OAK","RUISLIP","RUISLIP GARDENS","RUISLIP MANOR","RUSSELL SQUARE","SEVEN SISTERS","SHADWELL","SHEPHERDS BUSH","SHOREDITCH","SLOANE SQUARE","SNARESBROOK","SOUTH EALING","SOUTH HARROW","SOUTH KENSINGTON","SOUTH KENTON","SOUTH RUISLIP","SOUTH WIMBLEDON","SOUTH WOODFORD","SOUTHFIELDS","SOUTHGATE","SOUTHWARK","ST JAMES PARK","ST JOHNS WOOD","ST PAULS","STAMFORD BROOK","STANMORE","STEPNEY GREEN","STOCKWELL","STONEBRIDGE PARK","STRATFORD","SUDBURY HILL","SUDBURY TOWN","SURREY QUAYS","SWISS COTTAGE","TEMPLE","THEYDON BOIS","TOOTING BEC","TOOTING BROADWAY","TOTTENHAM COURT ROAD","TOTTENHAM HALE","TOTTERIDGE & WHETSTONE","TOWER HILL","TUFNELL PARK","TURNHAM GREEN","TURNPIKE LANE","UPMINSTER","UPMINSTER BRIDGE","UPNEY","UPTON PARK","UXBRIDGE","VAUXHALL","VICTORIA","WALTHAMSTOW","WANSTEAD","WAPPING","WARREN STREET","WARWICK AVENUE","WATERLOO","WATFORD","WEMBLEY CENTRAL","WEMBLEY PARK","WEST ACTON","WEST BROMPTON","WEST FINCHLEY","WEST HAM","WEST HAMPSTEAD","WEST HARROW","WEST KENSINGTON","WEST RUISLIP","WESTBOURNE PARK","WESTMINSTER","WHITE CITY","WHITECHAPEL","WILLESDEN GREEN","WILLESDEN JUNCTION","WIMBLEDON","WIMBLEDON PARK","WOOD GREEN","WOODFORD","WOODSIDE PARK"],"x":{"__ndarray__":"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","dtype":"float64","shape":[271]},"y":{"__ndarray__":"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","dtype":"float64","shape":[271]},"z":{"__ndarray__":"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","dtype":"float64","shape":[271]}}},"id":"1cc59f95-2087-4aa9-846b-faceab7e3928","type":"ColumnDataSource"}],"root_ids":["6ceffc48-d65e-4741-bc1e-698102169c6c"]},"title":"Bokeh Application","version":"0.12.10"}};
+                  var render_items = [{"docid":"89c5c0ca-4770-4780-b1e0-188e747f8343","elementid":"567c5e09-6225-4fcb-9ecf-2b95de4f30c7","modelid":"6ceffc48-d65e-4741-bc1e-698102169c6c"}];
+              
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                }
+              
+                if (root.Bokeh !== undefined) {
+                  embed_document(root);
+                } else {
+                  var attempts = 0;
+                  var timer = setInterval(function(root) {
+                    if (root.Bokeh !== undefined) {
+                      embed_document(root);
+                      clearInterval(timer);
+                    }
+                    attempts++;
+                    if (attempts > 100) {
+                      console.log("Bokeh: ERROR: Unable to embed document because BokehJS library is missing")
+                      clearInterval(timer);
+                    }
+                  }, 10, root)
+                }
+              })(window);
+            });
+          };
+          if (document.readyState != "loading") fn();
+          else document.addEventListener("DOMContentLoaded", fn);
+        })();
+        
+        </script>
+    </body>
+</html>
