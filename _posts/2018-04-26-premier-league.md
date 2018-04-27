@@ -61,4 +61,4 @@ This is a lot of fun to play around with and you can see the rise and fall of va
 
  You can see that around game 400 City went from losing more games than they won to winning more than they lose. Unsurprisingly this  corresponds to the 2008-09 season, when the club was bought by the Abu Dhabi Group and the following summer spent £100 million on players. If you look closely at the last 100 games I think you can also see the Pep effect.  
 
-This was a pretty brief look at things, but playing around with soccer data is something that I really enjoy so I reckon I'll return to at some point for a deeper dive.
+This was a pretty brief look at things, but playing around with soccer data is something that I really enjoy so I reckon I'll return at some point for a deeper dive.
