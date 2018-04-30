@@ -46,13 +46,18 @@ Taking a look at average home team goals over all the games we get this
 
 One interesting outlier here is Newcastle who score more than 1.5 goals on average at home, putting them well in the top half, but on average they've managed to concede almost 2 goals to the visiting team.
 
+We can see how the top 5 teams have scored against one another in the past 20 years. Spurs an unfortunate outliers here, having scored the fewest and conceded the most in games against top opposition.
+
+<center>
+    <embed src="/images/pl/sankey/index.html" width="900px" height="700px" alt="">
+</center>
+
+
 Next I decided to take a look at the cumulative results of each team in the league. To do this I sorted the data by date and iterated through it logging each teams results (1 for a win, 0 for a draw, -1 for a loss) and computed their cumulative sum. This gives a plot like this (made with [MPLD3](http://mpld3.github.io/))
 
-<figure class="full-width">
 <center>
-    <embed src="/images/pl/premiership.html" width="1000px" height="700px" alt="">
+    <embed src="/images/pl/premiership.html" width="900px" height="700px" alt="">
 </center>
-</figure>
 
 
 This is a lot of fun to play around with and you can see the rise and fall of various teams. For instance if you zoom you can see the Arsenal Invincible's season, and United's post-Fergie decline in form. One team that stands out here is Man City, you can see a real turn in fortunes. There's a pretty clear elbow in the data, and I did some quick change-point analysis to quantify it
