@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-My name is Neal Ó Riain. I'm originally from Carlow, and currently I live in London where I work as a Data Scientist at Amazon.
+My name is Neal Ó Riain. I'm originally from [Carlow](https://en.wikipedia.org/wiki/Carlow), and currently I live in London where I work as a data scientist at Amazon.
 
 My plan is to use this site for blog posts about things I'm working on or thinking about, you can find some more info about me on my [website](http://n-o-r.xyz).
 
