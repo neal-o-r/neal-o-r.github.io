@@ -77,7 +77,19 @@ figcaption {
   font-size: $small-font-size;
 }
 
+/* side by side figs */
+.figcolumn {
+  float: left;
+  width: 150px;
+  padding: 10px;
+}
 
+/* Clear floats after image containers */
+.figrow::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 /**
  * Lists
