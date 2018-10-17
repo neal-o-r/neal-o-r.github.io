@@ -16,6 +16,7 @@ dl, dd, ol, ul, figure {
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: $text-color;
+  text-align: justify;
   background-color: $background-color;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
@@ -165,7 +166,7 @@ blockquote {
  */
 code {
   @include relative-font-size(0.9375);
-  color: #f1f3f3; 
+  color: #f1f3f3;
   border: 1px solid $grey-color-light;
   border-radius: 3px;
   background-color: #002b36;
