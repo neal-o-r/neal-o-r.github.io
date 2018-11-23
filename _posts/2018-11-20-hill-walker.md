@@ -105,7 +105,7 @@ Now we have all we need to use the two functions above. Let's start off with the
 </center>
 </figure>
 
-As you can see things start out reasonably well, it starts off following the steep slope at the top of the mountain, and soon joins up with a river (the wonderfully named River Mountain), which is a sign that we've found a good route. Things go awry once we hit the bottom of the mountain; once we get into the valley and the slope becomes shallower there's not enough gradient information to point the hill-walker in the right direction, and so it stalls.
+As you can see things start out reasonably well, it starts off following the steep slope at the top of the mountain, and soon joins up with a river (the wonderfully named River Mountain) which is a sign that we've found a good route. Things go awry once we hit the bottom of the mountain; once we get into the valley and the slope becomes shallower there's not enough gradient information to point the hill-walker in the right direction, so it stalls.
 
 Let's try the same thing with momentum.
 
