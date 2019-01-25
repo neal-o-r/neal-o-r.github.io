@@ -9,7 +9,7 @@ $\nabla$
 <center><hr style="width:50%"></center>
 <br>
 
-There's a strong argument to be made that gradient descent is the most useful algorithm ever invented. The idea behind it is simple and powerful, and in some sense surprising. It is premised on the (perhaps counter-intuitive) fact that it is possible to perform a global optimisation of a function based solely on local information.[^1]
+There's a strong argument to be made that gradient descent is the most useful algorithm ever invented. The idea behind it is simple and powerful. It is premised on the (perhaps counter-intuitive) fact that it is possible to perform a global optimisation of a function based solely on local information.[^1]
 
 Given some function $f: \mathbb{R} \rightarrow \mathbb{R}$, let's say we want to find the input value, $x$, such that the output, $y$, is minimised; a pretty common thing to want to do. The way we do this is by starting off at some point, evaluating the derivative of the function ($\nabla f$) at that point, and moving in the direction of steepest descent as indicated by that derivative. We keep doing this until the derivative is (close to) 0. The derivative is our piece of local information, but by following this recipe we can find the minimum of the function.[^2]
 
