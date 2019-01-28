@@ -43,7 +43,7 @@ Here we've got a very simple implementation of gradient descent, which makes use
 <img src="/images/grad/grad.gif">
 </center>
 
-We start off on the side of that hill, and by following the gradient we eventually get down to the minimum. One thing you'll notice is that, as the slope becomes shallower our point moves more slowly, its steps become more tentative. We start off with big, bold steps towards the minimum but soon find that our progress slows. How do we get passed this?
+We start off on the side of that hill, and by following the gradient we eventually get down to the minimum. One thing you'll notice is that, as the slope becomes shallower our point moves more slowly, its steps become more tentative. We start off with big, bold steps towards the minimum but soon find that our progress slows. How do we get past this?
 
 It turns out that you can make a big improvement[^3] at very little expense by using momentum, in effect giving our gradient a little bit of short-term memory. Using this method our updates become,
 
