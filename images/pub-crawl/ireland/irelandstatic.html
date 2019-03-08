@@ -59,6 +59,8 @@
 <body>
 
     <div id="demo"></div>
+    <div class="infobox" style="visibility: hidden; height: 20px; vertical-align: bottom;">
+	    <h3 class="name">pub name</h3></div>
     <div id="map"></div>
     <script type="text/javascript">
     L.mapbox.accessToken = 'pk.eyJ1IjoibmVhbC1vLXIiLCJhIjoiY2ppdzc1emR5MnM5bDNwbXBnMGdwa3prYyJ9.-TszO3tBXF5EFRaKsSe6tQ';
@@ -123,16 +125,6 @@
         // group element. We're adding a class with the line name
         // and we're making them invisible
 
-        // these are the points that make up the path
-        // they are unnecessary so I've make them
-        // transparent for now
-        var ptFeatures = g.selectAll("circle")
-            .data(featuresdata)
-            .enter()
-            .append("circle")
-            .attr("r", 3)
-            .attr("class", "waypoints");
-
         // Here we will make the points into a single
         // line/path. Note that we surround the featuresdata
         // with [] to tell d3 to treat all the points as a
@@ -145,21 +137,46 @@
             .append("path")
             .attr("class", "lineConnect");
 
-        // This will be our traveling circle it will
-        // travel along our path
-        var marker = g.append("circle")
-            .attr("r", 10)
-            .attr("id", "marker")
-            .attr("class", "travelMarker");
-
-
-        var begend = g.selectAll(".drinks")
+        var ptFeatures = g.selectAll(".drinks")
             .data(featuresdata)
             .enter()
             .append("circle", ".drinks")
             .attr("r", 2)
             .style("fill", "red")
-            .style("opacity", "1");
+	    .style("opacity", "1")
+	    .on('mouseover', function(d, i) {
+		// make the mouseover'd element
+		// bigger and red
+		d3.select(".infobox .name").text(d.properties.name);
+		d3.select(".infobox").style('visibility', 'visible');
+		d3.select(this)
+			.transition()
+			.duration(100)
+			.attr('r', 20)
+			.attr('fill', "red");
+		})
+		.on('mouseout', function(d, i) {
+		// return the mouseover'd element
+		// to being smaller and black
+		d3.select(".infobox").style('visibility', 'hidden');
+		d3.select(this)
+			.transition()
+			.duration(100)
+			.attr('r', 2)
+			.attr('fill', "red");
+		})
+		    
+	var text = g.selectAll("text")
+            .data(featuresdata)
+            .enter()
+            .append("text")
+            .attr("class", "locnames")
+            .attr("y", function(d) {
+                return -10
+            })
+//.text(function(d) {
+//return "None"})
+
 
         // when the user zooms in or out you need to reset
         // the view
@@ -184,30 +201,18 @@
 
             // for the points we need to convert from latlong
             // to map units
-            begend.attr("transform",
-                function(d) {
-                    return "translate(" +
-                        applyLatLngToLayer(d).x + "," +
-                        applyLatLngToLayer(d).y + ")";
-                });
-
             ptFeatures.attr("transform",
                 function(d) {
                     return "translate(" +
                         applyLatLngToLayer(d).x + "," +
                         applyLatLngToLayer(d).y + ")";
                 });
-
-            // again, not best practice, but I'm harding coding
-            // the starting point
-
-            marker.attr("transform",
-                function() {
-                    var y = featuresdata[0].geometry.coordinates[1]
-                    var x = featuresdata[0].geometry.coordinates[0]
+	
+	    text.attr("transform",
+                function(d) {
                     return "translate(" +
-                        map.latLngToLayerPoint(new L.LatLng(y, x)).x + "," +
-                        map.latLngToLayerPoint(new L.LatLng(y, x)).y + ")";
+                        applyLatLngToLayer(d).x + "," +
+                        applyLatLngToLayer(d).y + ")";
                 });
 
 
