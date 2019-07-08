@@ -22,7 +22,7 @@ permalink: /about/
 <br>
 <br>
 
-My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://en.wikipedia.org/wiki/Carlow), and currently I live in London. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](/images/n-o-r/thesis.pdf) at Trinity College, Dublin.
+My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://en.wikipedia.org/wiki/Carlow), and currently I live in London. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
 
 I'm currently a Sr. Data Scientist at Spotify, working on the Content Knowledge team. For a while before that I was doing similar stuff at Amazon.
 
