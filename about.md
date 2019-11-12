@@ -24,7 +24,7 @@ permalink: /about/
 
 My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://en.wikipedia.org/wiki/Carlow), and currently I live in London. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
 
-I'm currently the PI Lead for the Content Platform at Spotify. For a while before that I was doing similar stuff at Amazon.
+I'm currently the PI Lead for Content Platform at Spotify. For a while before that I was doing similar stuff at Amazon.
 
 My plan is to use this site for blog posts about things I'm working on or thinking about.
 
