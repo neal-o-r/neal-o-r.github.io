@@ -28,4 +28,4 @@ I'm currently the PI Lead for the Content Platform at Spotify. For a while befor
 
 My plan is to use this site for blog posts about things I'm working on or thinking about.
 
-You can get in touch at [neal.o.riain@gmail.com](mailto:neal.o.riain@gmail.com).
+You can get in touch at [neal.o.riain@gmail.com](mailto:neal.o.riain@gmail.com). My public key is [here](/images/n-o-r/public.key).
