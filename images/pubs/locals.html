@@ -188,12 +188,15 @@ p {
     <h1>Find your local</h1>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
-  <script src="https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js"></script>
+  <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
   <script src="/images/pubs/voronoi_map.js"></script>
   <script>
-    L.mapbox.accessToken = 'pk.eyJ1IjoibmVhbC1vLXIiLCJhIjoiY2ppdzc1emR5MnM5bDNwbXBnMGdwa3prYyJ9.-TszO3tBXF5EFRaKsSe6tQ';
-    map = L.mapbox.map('map', 'mapbox/streets-v11',	{
-   accessToken: 'pk.eyJ1IjoibmVhbC1vLXIiLCJhIjoiY2ppdzc1emR5MnM5bDNwbXBnMGdwa3prYyJ9.-TszO3tBXF5EFRaKsSe6tQ'}).setView([53.35, -8.05], 7);
+
+   L.mapbox.accessToken = 'pk.eyJ1IjoibmVhbC1vLXIiLCJhIjoiY2ppdzc1emR5MnM5bDNwbXBnMGdwa3prYyJ9.-TszO3tBXF5EFRaKsSe6tQ';
+	
+   map = L.mapbox.map('map')
+		.setView([53.35, -8.05], 7)
+		.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
     url = '/images/pubs/pubs.csv';
     initialSelection = d3.set(['pub']);
