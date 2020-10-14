@@ -229,7 +229,6 @@ p {
         return data;
       }
 
-
       function createDots(data) {
 	d3.select('#overlay').remove();
 
@@ -247,7 +246,9 @@ p {
 		d.y = point.y;
 		return true
 	}
-	
+
+	pts = data.pubs.filter(points);
+
 	var svg = d3
           .select(container)
           .append("svg")
@@ -258,32 +259,35 @@ p {
           .style("position", "absolute")
           .style("z-index", 10);
 
+        let dots = svg
+          .selectAll("circle")
+          .data(pts)
+          .enter()
+          .append("circle")
+	  .attr("class", function(d) {return "circle " + pts.id;})
+          .attr("r", 3)
+          .style("opacity", 0.7)
+          .style("fill", "#ff3636");
+	
 	let polygon = svg
 		.selectAll("path")
-		.data(voronoi.polygons(data.pubs.filter(points)))     
+		.data(voronoi.polygons(pts)
+		.map(function(e, i) {return [e, pts[i].name]}))
 		.enter()
 		.append("path")
 	        .attr("class", "path")
 	        .style("fill", "none")
 	        .style("stroke", "black")
-	        .style("stroke-width", 0.2);
+	        .style("stroke-width", 0.2)
+	        .style("pointer-events", "all")
+		.on("mouseover", function(d) { 
+		    d3.select('#selected h1')
+		      .html('')
+		      .append('a')
+                      .text(d[1])
+                      .attr('target', '_blank')
+		});
 
-        let dots = svg
-          .selectAll("circle")
-          .data(data.pubs)
-          .enter()
-          .append("circle")
-          .attr("class", "circle")
-          .attr("r", 3)
-          .style("opacity", 0.7)
-          .style("fill", "#ff3636")
-	  .on("mouseover", function(d) {
-		d3.select('#selected h1')
-			.html('')
-			.append('a')
-			.text(d.name)
-			.attr('target', '_blank')
-	  });
 	render();
       }
 
@@ -297,7 +301,12 @@ p {
       function render() {
 
 	function path(d) {
-	 return d ? "M" + d.join("L") + "Z" : null; 
+	 if (d != undefined) {
+           if (d[0][0] != undefined && d[0][1] != undefined) {
+		   return "M" + d[0].join("L") + "Z";
+		 }
+	 } else {
+	           return null;}
 	}
 
 	d3.selectAll(".circle")
