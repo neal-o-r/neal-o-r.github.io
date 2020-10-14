@@ -41,6 +41,7 @@ p {
   top:0;
   bottom:0;
   width:100%;
+  z-index: 0;
 }
 
 #selected,
@@ -187,20 +188,131 @@ p {
   <div id='selected'>
     <h1>Find your local</h1>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
-  <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
-  <script src="/images/pubs/voronoi_map.js"></script>
-  <script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script>
 
-   L.mapbox.accessToken = 'pk.eyJ1IjoibmVhbC1vLXIiLCJhIjoiY2ppdzc1emR5MnM5bDNwbXBnMGdwa3prYyJ9.-TszO3tBXF5EFRaKsSe6tQ';
-   
-   var map = L.mapbox.map('map')
-		.setView([53.35, -8.05], 7)
-		.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+      mapboxgl.accessToken = 'pk.eyJ1IjoibmVhbC1vLXIiLCJhIjoiY2ppdzc1emR5MnM5bDNwbXBnMGdwa3prYyJ9.-TszO3tBXF5EFRaKsSe6tQ';
 
-    url = '/images/pubs/pubs.csv';
-    initialSelection = d3.set(['pub']);
-    voronoiMap(map, url, initialSelection);
+      var map;
+
+      const data = d3
+        .json("pubs.json",
+          function(d) {
+            return d;
+          }
+        )
+        .then(createMap)
+        .then(createDots);
+
+      function createMap(data) {
+        map = new mapboxgl.Map({
+          container: "map", // container id
+          style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+          center: [-8.05, 53.35],
+          zoom: 6 // starting zoom
+        });
+
+	map.on("viewreset", function(){return createDots(data);});
+        map.on("move", function(){return createDots(data);});
+        map.on("moveend", function(){return createDots(data);});
+
+        // Optional: Modify map with d3
+        d3.selectAll(".mapboxgl-canvas")
+          .style("opacity", 1)
+          .style("position", "absolute")
+          .style("z-index", 1);
+        return data;
+      }
+
+
+      function createDots(data) {
+	d3.select('#overlay').remove();
+
+        var container = map.getCanvasContainer();
+
+        var voronoi = d3.voronoi()
+               .x(function(d) { return d.x; })
+               .y(function(d) { return d.y; });
+        
+	
+	var points = function(d) {
+                var point = project(d.latitude, d.longitude);
+		
+                d.x = point.x;
+		d.y = point.y;
+		return true
+	}
+	
+	var svg = d3
+          .select(container)
+          .append("svg")
+	  .attr("id", "overlay")
+          .attr("width", "100%")
+          .attr("height", "2000")
+          // Ensure d3 layer in front of map
+          .style("position", "absolute")
+          .style("z-index", 10);
+
+	let polygon = svg
+		.selectAll("path")
+		.data(voronoi.polygons(data.pubs.filter(points)))     
+		.enter()
+		.append("path")
+	        .attr("class", "path")
+	        .style("fill", "none")
+	        .style("stroke", "black")
+	        .style("stroke-width", 0.2);
+
+        let dots = svg
+          .selectAll("circle")
+          .data(data.pubs)
+          .enter()
+          .append("circle")
+          .attr("class", "circle")
+          .attr("r", 3)
+          .style("opacity", 0.7)
+          .style("fill", "#ff3636")
+	  .on("mouseover", function(d) {
+		d3.select('#selected h1')
+			.html('')
+			.append('a')
+			.text(d.name)
+			.attr('target', '_blank')
+	  });
+	render();
+      }
+
+      // Projection method:
+      // Project geojson coordinate to the map's current state
+      function project(lat, lon) {
+        return map.project(new mapboxgl.LngLat(lon, lat));
+      }
+
+      // Render method redraws lines
+      function render() {
+
+	function path(d) {
+	 return d ? "M" + d.join("L") + "Z" : null; 
+	}
+
+	d3.selectAll(".circle")
+          .attr("cx", function(d) {
+            return project(d.latitude, d.longitude).x;
+          })
+          .attr("cy", function(d) {
+            return project(d.latitude, d.longitude).y;
+          })
+	d3.selectAll(".path")
+	  .attr("d", function(d) {
+	    return path(d);
+	  });
+      }
+
   </script>
 </body>
 </html>
