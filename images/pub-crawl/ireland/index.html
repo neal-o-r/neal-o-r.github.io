@@ -179,6 +179,8 @@
         // when the user zooms in or out you need to reset
         // the view
         map.on("viewreset", reset);
+        map.on("move", reset);
+        map.on("moveend", reset);
 
         // this puts stuff on the map! 
         reset();
