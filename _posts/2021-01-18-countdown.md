@@ -8,20 +8,20 @@ Do do-do do do-do, do-do do-do do-do da-do.
 <center><hr style="width:50%"></center>
 <br>
 
-Countdown is a **very** long-running UK quiz show[^1], based on word and number puzzles. There are three parts to parts to each game: i) ten letter rounds, where the contestants try to make the longest possible words from nine random letters; ii) four number rounds, where the contestants try to make a target number from six other numbers using simple arithmetic, iii) the contestants solve a nine-letter anagram.
+Countdown is a **very** long-running UK quiz show[^1], based on word and number puzzles. There are three parts to parts to each game: i) ten letter rounds, where the contestants try to make the longest possible words from nine random letters; ii) four number rounds, where the contestants try to make a target number from six other numbers using simple arithmetic, iii) a nine-letter anagram round.
 
 During lockdown I ended up watching a fair bit of Countdown, and given that I had a lot of time on my hands I decided to write some code to play the game.
 
 
 # Letters round
 
-For the letters round we get nine random letters, where we get the choice of how many are vowels and how many are consonants. Also, letters aren't chosen uniformly at random, they are stratified with respect to the frequency of the letters use in English. Let's say we've got:
+For the letters round we get nine random letters, where we get the choice of how many are vowels and how many are consonants. Also, letters aren't chosen uniformly at random, they are stratified with respect to their frequency of use in English. Let's say we've got:
 
 $$
 \rm{A\:R\:I\:O\:E\:K\:L\:N\:N}
 $$
 
-How can we find the longest word from this set of letters? The way that I've done it is by computing the "letter set" for each word - the sorted set of letters in the word - and constructing a dictionary mapping letter sets to the list of words that share that letter set. An example might be helpful here, take the word `cats`. The letter set of `cats` is `acst`, and this letter set can also be used to make three other words, so the entry in our dictionary is
+How can we find the longest word from this set of letters? The way that I've done it is by computing the _letter set_ for each word - the sorted set of letters in the word - and constructing a dictionary mapping letter sets to the list of words that share that letter set. An example might be helpful here, take the word `cats`. The letter set of `cats` is `acst`, and this letter set can also be used to make three other words, so the entry in our dictionary is
 
 ```
 'acst' : ['acts', 'cast', 'cats', 'scat']
@@ -81,7 +81,7 @@ All we need to do it take the product of all length $N$ permutations of numbers 
 
 
 ```python
-def eqn_nums(nums: Numbers) -> Equations:
+def eqn_nums(nums: Numbers) -> Equation:
     ops = combinations_with_replacement("+-/*", len(nums) - 1)
     op_perms = mapcat(permutations, ops)
     num_perms = set(permutations(nums))
@@ -136,10 +136,10 @@ $$
 
 # Conundrum
 
-The final part of the game is the Countdown Conundrum, which is a nine-letter anagram. To solve this anagram we can just use the code from our letters round. The real fun is making the conundrum, the nine-letter anagram being made up of a four and five-letter word. To do this we get all the nine-letter words (but only if you can't make any other nine-letter words from those letters, to avoid confusion), we get all of the four and five-letter words, and then return a triple of (four, five, nine-letter) words once we find four and five letter words that make a nine-letter. Probably clearer in code
+The final part of the game is the Countdown Conundrum, which is a nine-letter anagram. To solve this anagram we can just use the code from our letters round. The real fun is making the conundrum, the nine-letter anagram is always made up of one four and one five-letter word. To do this we get all the nine-letter words (but only if you can't make any other nine-letter words from those letters, to avoid confusion), we get all of the four and five-letter words, and then return a triple of (four, five, nine)-letter words once we find a four and five-letter word pair that share letter with a nine-letter word. Probably clearer in code
 
 ```python
-def conundrums():
+def conundrum():
 
     uniq9s = {k: v for k, v in WORD_MAP.items() if len(v) is 1 and len(k) is 9}
     fours = shuffled(w for w in WORDS if len(w) is 4)
