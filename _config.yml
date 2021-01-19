@@ -29,6 +29,9 @@ minima:
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 theme: minima
 exclude:
   - Gemfile
