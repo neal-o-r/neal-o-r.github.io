@@ -15,7 +15,7 @@ During lockdown I ended up watching a fair bit of Countdown, and given that I ha
 
 # Letters round
 
-For the letters round we get nine random letters, where we get the choice of how many are vowels and how many are consonants. Also, letters aren't chosen uniformly at random, they are stratified with respect to the frequency of the letters' use in English. Let's say we've got:
+For the letters round we get nine random letters, where we get the choice of how many are vowels and how many are consonants. Also, letters aren't chosen uniformly at random, they are stratified with respect to their frequency of use in English. Let's say we've got:
 
 $$
 \rm{A\:R\:I\:O\:E\:K\:L\:N\:N}
