@@ -23,7 +23,7 @@ $$
 
 How can we find the longest word from this set of letters? The way that I've done it is by computing the _letter set_ for each word - the sorted set of letters in the word - and constructing a dictionary mapping letter sets to the list of words that share that letter set. An example might be helpful here, take the word `cats`. The letter set of `cats` is `acst`, and this letter set can also be used to make three other words, so the entry in our dictionary is
 
-```
+```python
 'acst' : ['acts', 'cast', 'cats', 'scat']
 ```
 
@@ -54,7 +54,7 @@ Simple as.
 
 For the letters given above we get,
 
-```
+```python
 best_words("arioeklnn")
 ['lankier', 'aileron', 'alienor', 'oarlike', 'kaoline']
 ```
