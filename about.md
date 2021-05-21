@@ -24,7 +24,8 @@ permalink: /about/
 
 My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://en.wikipedia.org/wiki/Carlow), and currently I live in London. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
 
-I'm currently at Spotify doing data things. For a while before that I was doing similar data things at Amazon.
+I'm currently working at [InVision](https://www.invisionapp.com/), where I'm Director of Product Data Analytics. Previously I was doing similar data science things at Spotify and Amazon. 
+
 
 My plan is to use this site for blog posts about things I'm working on or thinking about.
 
