@@ -22,7 +22,7 @@ permalink: /about/
 <br>
 <br>
 
-My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://ga.wikipedia.org/wiki/Ceatharlach), and currently I live in London. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
+My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://ga.wikipedia.org/wiki/Ceatharlach), I was in London for a while, and now I'm living in Dublin. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
 
 I'm currently working at [InVision](https://www.invisionapp.com/), where I'm the Director of Data Science. Previously I did similar data science-y things at Spotify and Amazon. 
 
