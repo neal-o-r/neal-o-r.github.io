@@ -22,11 +22,11 @@ permalink: /about/
 <br>
 <br>
 
-My name is Neal Ó Riain, I'm that guy up there on the left. I'm originally from [Carlow](https://ga.wikipedia.org/wiki/Ceatharlach), I was in London for a while, and now I'm living in Dublin. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
+My name is Neal Ó Riain, I'm that fella up there on the left. I'm originally from [Carlow](https://ga.wikipedia.org/wiki/Ceatharlach), I was in London for a while, and now I'm living in Dublin. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
 
-I'm currently working at [InVision](https://www.invisionapp.com/), where I'm the Director of Data Science. Previously I did similar data science-y things at Spotify and Amazon. 
+I'm currently working at [Contentful](https://www.contentful.com/), where I'm the Director of Data Analytics. Previously I did similar data science-y things at [Amazon](amazon.com), [Spotify](spotify.com), and [InVision](https://www.invisionapp.com/). 
 
 
 My plan is to use this site for blog posts about things I'm working on or thinking about.
 
-You can get in touch at [neal.o.riain@gmail.com](mailto:neal.o.riain@gmail.com). My public key is [here](/images/n-o-r/public.key).
+You can get in touch at [neal dot o dot riain at gmail dot com](mailto:neal.o.riain@gmail.com). My public key is [here](/images/n-o-r/public.key).
