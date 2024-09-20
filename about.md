@@ -24,8 +24,7 @@ permalink: /about/
 
 My name is Neal Ó Riain, I'm that fella up there on the left. I'm originally from [Carlow](https://ga.wikipedia.org/wiki/Ceatharlach), I was in London for a while, and now I'm living in Dublin. I used to be an astrophysicist, I did my doctoral research on the [atmospheres of stars](http://www.tara.tcd.ie/handle/2262/85162) at Trinity College, Dublin.
 
-I'm currently working at [Contentful](https://www.contentful.com/), where I'm the Director of Data Analytics. Previously I did similar data science-y things at [Amazon](amazon.com), [Spotify](spotify.com), and [InVision](https://www.invisionapp.com/). 
-
+I'm currently working at [Automattic](https://automattic.com/), where I'm doing all things Machine Learning. Previously I led the data and analytics orgs at [Contentful](https://www.contentful.com/) and [InVision](https://www.invisionapp.com/). Before that again, I did various data science-y things at [Amazon](amazon.com), [Spotify](spotify.com). 
 
 My plan is to use this site for blog posts about things I'm working on or thinking about.
 
